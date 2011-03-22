@@ -20,6 +20,7 @@ module ImpressionistController
                                  :session_hash=> request.session_options[:id],
                                  :ip_address=> request.remote_ip,
                                  :user_id=> user_id,
+                                 :referrer=>request.referrer,
                                  :controller_name=>controller_name,
                                  :action_name=> action_name)
         else
@@ -39,6 +40,7 @@ module ImpressionistController
           Impression.create(:controller_name=> controller_name,
                             :action_name=> action_name,
                             :user_id=> user_id,
+                            :referrer=>request.referrer,
                             :request_hash=> @impressionist_hash,
                             :session_hash=> request.session_options[:id],
                             :ip_address=> request.remote_ip,
