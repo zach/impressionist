@@ -19,6 +19,7 @@ class CreateImpressionsTable < ActiveRecord::Migration
     add_index :impressions, [:impressionable_type, :impressionable_id, :session_hash], :name => "poly_session_index", :unique => false    
     add_index :impressions, [:controller_name,:action_name,:request_hash], :name => "controlleraction_request_index", :unique => false
     add_index :impressions, [:controller_name,:action_name,:ip_address], :name => "controlleraction_ip_index", :unique => false
+    add_index :impressions, [:controller_name,:action_name,:referrer], :name => "controlleraction_referrer_index", :unique => false
     add_index :impressions, [:controller_name,:action_name,:session_hash], :name => "controlleraction_session_index", :unique => false        
     add_index :impressions, :user_id
   end
@@ -29,6 +30,7 @@ class CreateImpressionsTable < ActiveRecord::Migration
     remove_index :impressions, :name => :poly_session_index        
     remove_index :impressions, :name => :controlleraction_request_index
     remove_index :impressions, :name => :controlleraction_ip_index
+    remove_index :impressions, :name => :controlleraction_referrer_index
     remove_index :impressions, :name => :controlleraction_session_index        
     remove_index :impressions, :user_id
     
